@@ -81,7 +81,7 @@ gcloud pubsub subscriptions create \
 
 ### 8. Creating a service account and setting the environment variable
 ```shell
-export GOOGLE_APPLICATION_CREDENTIALS="auther" (A JSON key file you saved in step 1.4)
+export GOOGLE_APPLICATION_CREDENTIALS="xxx.json" (A JSON key file you saved in step 1.4)
 ```
 
 ### 9. publish audio 
