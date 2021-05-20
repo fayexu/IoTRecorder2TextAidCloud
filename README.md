@@ -90,8 +90,8 @@ python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsens
 
  
 
-### x. create OLDB
-1. Use AWS console to create a [OLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
-2. [Access OLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
+### x. create QLDB
+1. Use AWS console to create a [QLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
+2. [Access QLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
 3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
 
