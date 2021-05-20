@@ -76,7 +76,7 @@ gcloud pubsub subscriptions create \
 - Save this key to the same directory as the example Python files, and rename it service_account.json.
 
 ### 8. Creating a service account and setting the environment variable
-export GOOGLE_APPLICATION_CREDENTIALS="./myiotthingcchw-b551db336f4a.json"
+export GOOGLE_APPLICATION_CREDENTIALS="./myiotthingcchw-b551db336f4a.json" (A JSON key file you saved in step 1.4)
 
 ### 9. publish audio 
 python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsensing
