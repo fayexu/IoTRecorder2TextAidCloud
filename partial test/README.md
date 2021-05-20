@@ -1,6 +1,6 @@
 ### 9. publish audio 
 ```shell
-python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsensing
+python publisher.py myiotthingcchw ../data/have_a_nice_day.m4a publish speechsensing
 ```
 
 ### 10. subscriber a topic from pub
