@@ -14,32 +14,32 @@ from pyqldb.driver.qldb_driver import QldbDriver
 
 def create_table(transaction_executor):
     print("Creating a table")
-    transaction_executor.execute_statement("CREATE TABLE People")
+    transaction_executor.execute_statement("CREATE TABLE CC_Project")
 
 
 def create_index(transaction_executor):
     print("Creating an index")
-    transaction_executor.execute_statement("CREATE INDEX ON People(lastName)")
+    transaction_executor.execute_statement("CREATE INDEX ON CC_Project(node_id)")
 
 
 def insert_documents(transaction_executor, arg_1):
     print("Inserting a document")
-    transaction_executor.execute_statement("INSERT INTO People ?", arg_1)
+    transaction_executor.execute_statement("INSERT INTO CC_Project ?", arg_1)
 
 
-def read_documents(transaction_executor):
+def read_documents(transaction_executor, node_id):
     print("Querying the table")
-    cursor = transaction_executor.execute_statement("SELECT * FROM People WHERE lastName = ?", 'Doe')
+    cursor = transaction_executor.execute_statement("SELECT * FROM CC_Project WHERE node_id = ?", node_id)
 
     for doc in cursor:
-        print(doc["firstName"])
-        print(doc["lastName"])
-        print(doc["age"])
+        print(doc["node_id"])
+        print(doc["audio_name"])
+        print(doc["transcript"])
 
 
-def update_documents(transaction_executor, age, lastName):
+def update_documents(transaction_executor, audio_name, node_id):
     print("Updating the document")
-    transaction_executor.execute_statement("UPDATE People SET age = ? WHERE lastName = ?", age, lastName)
+    transaction_executor.execute_statement("UPDATE CC_Project SET audio_name = ? WHERE node_id = ?", audio_name, node_id)
 
 
 # Configure retry limit to 3
@@ -56,21 +56,23 @@ qldb_driver.execute_lambda(lambda executor: create_table(executor))
 qldb_driver.execute_lambda(lambda executor: create_index(executor))
 
 # Insert a document
-doc_1 = {'firstName': "John",
-         'lastName': "Doe",
-         'age': 32,
+doc_1 = {'node_id': "3",
+         'audio_name': "test_3",
+         'transcript': "hello hi how are you",
          }
 
 qldb_driver.execute_lambda(lambda x: insert_documents(x, doc_1))
 
 # Query the table
-qldb_driver.execute_lambda(lambda executor: read_documents(executor))
+qldb_driver.execute_lambda(lambda executor: read_documents(executor, '3'))
 
 # Update the document
-age = 42
-lastName = 'Doe'
+audio_name = "test_2"
+node_id = "1"
 
-qldb_driver.execute_lambda(lambda x: update_documents(x, age, lastName))
+qldb_driver.execute_lambda(lambda x: update_documents(x, audio_name, node_id))
 
 # Query the table for the updated document
-qldb_driver.execute_lambda(lambda executor: read_documents(executor))
+qldb_driver.execute_lambda(lambda executor: read_documents(executor, node_id))
+
+
