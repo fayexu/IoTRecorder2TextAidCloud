@@ -112,3 +112,8 @@ python transcribe.py <bucket id> <region>  <job name>
 ### 14. save transcript to QLDB
 
 
+### 15. p2p framework
+https://github.com/macsnoeren/python-p2p-network
+```shell
+pip install p2pnetwork
+```
