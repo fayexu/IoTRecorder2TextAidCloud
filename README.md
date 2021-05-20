@@ -80,18 +80,35 @@ gcloud pubsub subscriptions create \
 - Save this key to the same directory as the example Python files, and rename it service_account.json.
 
 ### 8. Creating a service account and setting the environment variable
+```shell
 export GOOGLE_APPLICATION_CREDENTIALS="auther" (A JSON key file you saved in step 1.4)
+```
 
 ### 9. publish audio 
+```shell
 python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsensing
+```
 
 ### 10. subscriber a topic from pub
- python subscriber.py myiotthingcchw receive speech-to-transcribe
+```shell
+python subscriber.py myiotthingcchw receive speech-to-transcribe
+```
 
- 
+### 11. upload audio file to s3
+```shell
+python upload.py <bucket id>
+```
 
-### x. create QLDB
+### 12. transcribe audio file
+```shell
+python transcribe.py <bucket id> <region>  <job name> 
+```
+
+### 13. create QLDB
 1. Use AWS console to create a [QLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
 2. [Access QLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
 3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
+
+### 14. save transcript to QLDB
+
 
