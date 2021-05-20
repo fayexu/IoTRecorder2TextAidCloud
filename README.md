@@ -96,7 +96,7 @@ python subscriber.py myiotthingcchw receive speech-to-transcribe
 
 ### 11. upload audio file to s3
 ```shell
-python upload.py <bucket id> <path to audil file>
+python upload.py <bucket id> <path to audio file>
 ```
 
 ### 12. transcribe audio file
