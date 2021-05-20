@@ -96,12 +96,12 @@ python subscriber.py myiotthingcchw receive speech-to-transcribe
 
 ### 11. upload audio file to s3
 ```shell
-python upload.py <bucket id>
+python upload.py <bucket id> <path to audil file>
 ```
 
 ### 12. transcribe audio file
 ```shell
-python transcribe.py <bucket id> <region>  <job name> 
+python transcribe.py <bucket id> <region> <audio name> <job name> 
 ```
 
 ### 13. create QLDB
