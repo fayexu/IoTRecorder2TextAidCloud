@@ -16,6 +16,8 @@ import boto3
 import requests
 
 class TranscribeNode (Node):
+    messages = [None, None, None]
+    count = 0
 
     # Python class constructor
     def __init__(self, host, port):
@@ -38,6 +40,8 @@ class TranscribeNode (Node):
         print("outbound_node_disconnected: " + node.id)
 
     def node_message(self, node, data):
+        self.messages[self.count] = data
+        self.count = self.count + 1
         print("node_message from " + node.id + ": " + str(data))
         
     def node_disconnect_with_outbound_node(self, node):
@@ -153,6 +157,10 @@ class TranscribeNode (Node):
         data = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
         data = requests.get(data).json()
         txt_data = data["results"]["transcripts"][0]["transcript"]
-        print(txt_data)
+
+        out= open('./transcript.txt','w')
+        out.write(txt_data)
+        out.close()
+        # print(txt_data)
         return txt_data
         
