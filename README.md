@@ -80,16 +80,18 @@ gcloud pubsub subscriptions create \
 - Save this key to the same directory as the example Python files, and rename it service_account.json.
 
 ### 8. Creating a service account and setting the environment variable
-export GOOGLE_APPLICATION_CREDENTIALS="./myiotthingcchw-b551db336f4a.json"
+export GOOGLE_APPLICATION_CREDENTIALS="auther" (A JSON key file you saved in step 1.4)
 
 ### 9. publish audio 
 python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsensing
 
 ### 10. subscriber a topic from pub
  python subscriber.py myiotthingcchw receive speech-to-transcribe
+
  
 
 ### x. create OLDB
 1. Use AWS console to create a [OLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
 2. [Access OLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
 3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
+
