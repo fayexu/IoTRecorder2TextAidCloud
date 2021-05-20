@@ -3,6 +3,10 @@ This repo is for cc project
 
 ## How to run
 
+### 0. create virtual env
+1. [install virualenv](https://virtualenv.pypa.io/en/latest/installation.html "Title"): sudo pip3 install virtualenv
+2. create env by :virtualenv env
+
 ### 1. Google Cloud Setup
 1. In the Cloud Console, on the project selector page, select or create a Cloud project.
 2. Make sure that billing is enabled for your Google Cloud project.
@@ -83,3 +87,9 @@ python publisher.py myiotthingcchw ./data/have_a_nice_day.m4a publish speechsens
 
 ### 10. subscriber a topic from pub
  python subscriber.py myiotthingcchw receive speech-to-transcribe
+ 
+
+### x. create OLDB
+1. Use AWS console to create a [OLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
+2. [Access OLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
+3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
