@@ -88,6 +88,9 @@ export GOOGLE_APPLICATION_CREDENTIALS="xxx.json" (A JSON key file you saved in s
 1. Use AWS console to create a [QLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
 2. [Access QLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
 3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
+```shell
+python partial_test/qldb-quick-start.py
+```
 
 
 ### 10. p2p framework
@@ -95,6 +98,7 @@ https://github.com/macsnoeren/python-p2p-network
 ```shell
 pip install p2pnetwork
 ```
+
 ### 11. run application
 ```shell
 python app.py <project_id> <path_to_audio_file> <topic_id> <subscription_id> <bucket_id> <transcribe_job_name>
