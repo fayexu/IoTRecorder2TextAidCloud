@@ -138,5 +138,5 @@ pip install p2pnetwork
 
 ### 14. run application
 ```shell
-python app.py <project_id> <path_to_audio_file> <topic_id> <subscription_id> <bucket_id> <transcribe_job_name>
+python app.py <project_id> <path_to_audio_file> <topic_id> <subscription_id> <bucket_id> <region> <transcribe_job_name> 
 ```
