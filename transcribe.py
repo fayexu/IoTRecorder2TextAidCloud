@@ -93,12 +93,13 @@ class TranscribeNode (Node):
             try:
                 count = count + 1
                 print("Received audio {}:".format(count))
-                image_data = base64.b64decode(message.data)
+                audio_data = base64.b64decode(message.data)
 
                 with io.open(file_pattern.format("audio", count, "m4a"), "wb") as f:
-                    f.write(image_data)
+                    f.write(audio_data)
                     message.ack()
                     # Signal to the main thread that we can exit.
+                
             except binascii.Error:
                 message.ack()  # To move forward if a message can't be processed
 
@@ -116,8 +117,8 @@ class TranscribeNode (Node):
         # [END pubsub_subscriber_async_pull]
         # [END pubsub_quickstart_subscriber]
 
-    def upload_to_aws(self, local_file, bucket, s3_file):
-        s3 = boto3.client('s3',region_name='us-west-2')
+    def upload_to_aws(self, local_file, bucket, s3_file, region_name):
+        s3 = boto3.client('s3',region_name)
         try:
             s3.upload_file(local_file, bucket, s3_file)
             print("Upload Successful")

@@ -32,7 +32,7 @@ parser.add_argument('file_path')
 parser.add_argument('topic_id')
 parser.add_argument('subscription_id')
 parser.add_argument('bucket_id')
-# parser.add_argument('region')
+parser.add_argument('region')
 parser.add_argument('job_name')
 
 args = parser.parse_args()
@@ -65,9 +65,10 @@ time.sleep(3)
 
 node_2.receive_messages(args.project_id, args.subscription_id, 5)
 bucket_name = args.bucket_id
+region_name = args.region
 aud_name = 'audio-1'
 audio_name = 'audio_1'
-is_uploaded = node_2.upload_to_aws(aud_name+'.m4a', bucket_name, audio_name+'.m4a')
+is_uploaded = node_2.upload_to_aws(aud_name+'.m4a', bucket_name, audio_name+'.m4a', region_name)
 transcribe_client = boto3.client('transcribe')
 file_uri = 's3://' + bucket_name + '/' + audio_name + '.m4a'
 job_name = args.job_name
