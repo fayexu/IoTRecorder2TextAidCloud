@@ -74,7 +74,7 @@ transcribe_client = boto3.client('transcribe')
 file_uri = 's3://' + bucket_name + '/' + audio_name + '.m4a'
 job_name = args.job_name
 txt_data = node_2.transcribe_file(job_name, file_uri, transcribe_client)
-node_2.send_to_nodes("Trans/" + aud_name + '/' + node_2.audio + '/' + txt_data)
+node_2.send_to_nodes("Trans/" + aud_name + '/' + txt_data)
 
 time.sleep(10)
 

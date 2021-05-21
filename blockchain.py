@@ -12,7 +12,7 @@ from pyqldb.driver.qldb_driver import QldbDriver
 class BlockChainNode (Node):
     # messages = [None, None, None]
     # count = 0
-    transcript = [None, None, None]
+    transcript = [None, None]
 
     # Python class constructor
     def __init__(self, host, port):
@@ -41,7 +41,6 @@ class BlockChainNode (Node):
         if cmd == "Trans":
             self.transcript[0] = data.split("/")[1]
             self.transcript[1] = data.split("/")[2]
-            self.transcript[2] = data.split("/")[3]
             print()
         print("node_message from " + node.id + ": " + str(data))
         
@@ -93,8 +92,8 @@ class BlockChainNode (Node):
         # print(self.messages[1])
         # Insert a document
         doc_1 = {'node_id': self.id,
-                 'audio_name': self.transcript[1],
-                 'transcript': self.transcript[2],
+                 'audio_name': self.transcript[0],
+                 'transcript': self.transcript[1],
                  }
 
         qldb_driver.execute_lambda(lambda x: self.insert_documents(x, doc_1))
