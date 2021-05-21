@@ -68,11 +68,11 @@ bucket_name = args.bucket_id
 region_name = args.region
 aud_name = 'audio-1'
 audio_name = 'audio_1'
-is_uploaded = node_2.upload_to_aws(aud_name+'.m4a', bucket_name, audio_name+'.m4a')
+is_uploaded = node_2.upload_to_aws(aud_name+'.m4a', bucket_name, audio_name+'.m4a', region_name)
 transcribe_client = boto3.client('transcribe')
 file_uri = 's3://' + bucket_name + '/' + audio_name + '.m4a'
 job_name = args.job_name
-txt_data = node_2.transcribe_file(job_name, file_uri, transcribe_client, region_name)
+txt_data = node_2.transcribe_file(job_name, file_uri, transcribe_client)
 node_2.send_to_nodes(txt_data)
 
 time.sleep(10)
