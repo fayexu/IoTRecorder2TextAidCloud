@@ -84,22 +84,59 @@ gcloud pubsub subscriptions create \
 export GOOGLE_APPLICATION_CREDENTIALS="xxx.json" (A JSON key file you saved in step 1.4)
 ```
 
-### 9. create QLDB
+### 9. Create an IAM user for AWS
+To create an administrator user and sign in to the console
+1. Create an administrator user called adminuser in your AWS account. For instructions, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the IAM User Guide.
+2. Sign in to the AWS Management Console using a special URL. For more information, see [How Users Sign In to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in the IAM User Guide.
+
+### 10. Setup AWS CLI for Transcribe
+Reference: https://docs.aws.amazon.com/transcribe/latest/dg/setting-up-asc.html
+1. Download and configure the AWS CLI. For instructions, see the following topics in the AWS Command Line Interface User Guide:
+
+[Getting set up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)
+
+[Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html")
+
+2. In the AWS CLI config file, add a named profile for the administrator user:
+```shell
+[profile adminuser]
+aws_access_key_id = adminuser access key ID
+aws_secret_access_key = adminuser secret access key
+region = aws-region
+```
+Verify the setup by typing the following help command at the command prompt:
+```shell
+aws help
+```
+
+### 11. Setup AWS S3
+Reference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html
+To create a bucket
+1. Sign in to the AWS Management Console and open the Amazon S3 console at https://console.aws.amazon.com/s3/.
+2. Choose Create bucket.
+3. The Create bucket page opens.
+4. In Bucket name, enter cc2021project for your bucket
+5. In Region, choose the AWS Region where you want the bucket to reside. We choose us-west-2.
+6. In Bucket settings for Block Public Access, uncheck the Block All Public Access.
+7. Choose Create bucket.
+
+### 12. Setup QLDB
 1. Use AWS console to create a [QLDB](https://ap-southeast-1.console.aws.amazon.com/qldb/home?region=ap-southeast-1#getting-started "Title")
 2. [Access QLDB](https://docs.aws.amazon.com/qldb/latest/developerguide/accessing.html "Title") 
 3. QLDB [endpoints](https://docs.aws.amazon.com/general/latest/gr/qldb.html "Title")
+4. Create a new ledger called cc-pj-blockchain-registration
+5. Run the following command to create a new table called CC_Project.
 ```shell
 python partial_test/qldb-quick-start.py
 ```
 
-
-### 10. p2p framework
-https://github.com/macsnoeren/python-p2p-network
+### 13. p2p framework
+Reference: https://pypi.org/project/p2pnetwork/
 ```shell
 pip install p2pnetwork
 ```
 
-### 11. run application
+### 14. run application
 ```shell
 python app.py <project_id> <path_to_audio_file> <topic_id> <subscription_id> <bucket_id> <transcribe_job_name>
 ```
