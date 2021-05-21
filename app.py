@@ -59,26 +59,27 @@ time.sleep(2)
 
 node_1.publish_messages(args.project_id, args.topic_id, args.file_path)
 audio = args.file_path.split("/")[-1]
-node_1.send_to_nodes(audio)
+node_1.send_to_nodes("Pub/" + audio)
 
 time.sleep(3)
 
 node_2.receive_messages(args.project_id, args.subscription_id, 5)
+aud_name = 'audio-1'
+node_2.send_to_nodes("Sub/" + aud_name)
 bucket_name = args.bucket_id
 region_name = args.region
-aud_name = 'audio-1'
 audio_name = 'audio_1'
 is_uploaded = node_2.upload_to_aws(aud_name+'.m4a', bucket_name, audio_name+'.m4a', region_name)
 transcribe_client = boto3.client('transcribe')
 file_uri = 's3://' + bucket_name + '/' + audio_name + '.m4a'
 job_name = args.job_name
 txt_data = node_2.transcribe_file(job_name, file_uri, transcribe_client)
-node_2.send_to_nodes(txt_data)
+node_2.send_to_nodes("Trans/" + aud_name + '/' + node_2.audio + '/' + txt_data)
 
 time.sleep(10)
 
 node_3.save_to_QLDB()
-node_3.send_to_nodes("finish saving transcript to QLDB")
+node_3.send_to_nodes("DB/finish saving a transcript to QLDB")
 
 time.sleep(3)
 

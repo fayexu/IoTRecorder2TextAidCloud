@@ -10,8 +10,8 @@ import argparse
 import audio_transmit_helper
 
 class IoTdeviceNode (Node):
-    messages = [None, None, None]
-    count = 0
+    # messages = [None, None, None]
+    # count = 0
 
     # Python class constructor
     def __init__(self, host, port):
@@ -34,8 +34,8 @@ class IoTdeviceNode (Node):
         print("outbound_node_disconnected: " + node.id)
 
     def node_message(self, node, data):
-        self.messages[self.count] = data
-        self.count = self.count + 1
+        # self.messages[self.count] = data
+        # self.count = self.count + 1
         print("node_message from " + node.id + ": " + str(data))
         
     def node_disconnect_with_outbound_node(self, node):

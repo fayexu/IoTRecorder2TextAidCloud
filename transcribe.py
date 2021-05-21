@@ -16,8 +16,9 @@ import boto3
 import requests
 
 class TranscribeNode (Node):
-    messages = [None, None, None]
-    count = 0
+    # messages = [None, None, None]
+    # count = 0
+    audio = ""
 
     # Python class constructor
     def __init__(self, host, port):
@@ -40,8 +41,11 @@ class TranscribeNode (Node):
         print("outbound_node_disconnected: " + node.id)
 
     def node_message(self, node, data):
-        self.messages[self.count] = data
-        self.count = self.count + 1
+        # self.messages[self.count] = data
+        # self.count = self.count + 1
+        cmd = data.split("/")[0]
+        if cmd == "Pub":
+            self.audio = data.split("/")[-1]
         print("node_message from " + node.id + ": " + str(data))
         
     def node_disconnect_with_outbound_node(self, node):
